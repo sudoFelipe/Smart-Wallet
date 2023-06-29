@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ribbtec.smartwallet.dto.DadosTipoAtivoDTO;
 import com.ribbtec.smartwallet.entity.TipoAtivo;
 import com.ribbtec.smartwallet.repository.TipoAtivoRepository;
 
@@ -13,20 +14,20 @@ import com.ribbtec.smartwallet.repository.TipoAtivoRepository;
 public class TipoAtivoService {
 
 	@Autowired
-	private TipoAtivoRepository tipoAtivoService;
+	private TipoAtivoRepository tipoAtivoRepository;
 	
-	public List<TipoAtivo> buscarTodos() {
-		return tipoAtivoService.findAll();
+	public List<DadosTipoAtivoDTO> buscarTodos() {
+		return tipoAtivoRepository.findAll().stream().map(DadosTipoAtivoDTO::new).toList();
 	}
 	
-	public TipoAtivo criar(TipoAtivo tipoAtivo) {
-		return tipoAtivoService.save(tipoAtivo);
+	public DadosTipoAtivoDTO criar(TipoAtivo tipoAtivo) {
+		return new DadosTipoAtivoDTO(tipoAtivoRepository.save(tipoAtivo));
 	}
 
-	public TipoAtivo buscarPorId(String id) {
+	public DadosTipoAtivoDTO buscarPorId(String id) {
 		
-		Optional<TipoAtivo> tipoAtivo = tipoAtivoService.findById(id);
+		Optional<TipoAtivo> tipoAtivo = tipoAtivoRepository.findById(id);
 		
-		return tipoAtivo.isPresent() ? tipoAtivo.get() : null;
+		return tipoAtivo.isPresent() ? new DadosTipoAtivoDTO(tipoAtivo.get()) : null;
 	}
 }

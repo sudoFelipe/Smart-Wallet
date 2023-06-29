@@ -1,5 +1,15 @@
 package com.ribbtec.smartwallet.record;
 
-public record InfoTipoAtivo(String id, String descricao, String sigla) {
+import jakarta.validation.constraints.NotBlank;
+
+public record InfoTipoAtivo(
+		
+		String id, 
+		
+		@NotBlank
+		String descricao, 
+		
+		@NotBlank
+		String sigla) {
 
 }

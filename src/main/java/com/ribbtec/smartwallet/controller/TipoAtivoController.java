@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ribbtec.smartwallet.dto.DadosTipoAtivoDTO;
 import com.ribbtec.smartwallet.entity.TipoAtivo;
 import com.ribbtec.smartwallet.record.InfoTipoAtivo;
 import com.ribbtec.smartwallet.service.TipoAtivoService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tipoAtivo")
@@ -22,18 +25,18 @@ public class TipoAtivoController {
 	private TipoAtivoService tipoAtivoService;
 	
 	@GetMapping
-	public List<TipoAtivo> consultarTodos() {
+	public List<DadosTipoAtivoDTO> consultarTodos() {
 		return tipoAtivoService.buscarTodos();
 	}
 	
 	@GetMapping("/{id}")
-	public TipoAtivo consultarPorId(String id) {
+	public DadosTipoAtivoDTO consultarPorId(String id) {
 		return tipoAtivoService.buscarPorId(id);
 	}
 	
 	@PostMapping
 	@Transactional
-	public TipoAtivo incluir(@RequestBody InfoTipoAtivo dados) {
+	public DadosTipoAtivoDTO incluir(@RequestBody @Valid InfoTipoAtivo dados) {
 		return tipoAtivoService.criar(new TipoAtivo(dados));
 	}
 }

@@ -17,6 +17,8 @@ import com.ribbtec.smartwallet.service.AtivoService;
 import com.ribbtec.smartwallet.service.EmpresaService;
 import com.ribbtec.smartwallet.service.TipoAtivoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/ativo")
 public class AtivoController {
@@ -40,16 +42,16 @@ public class AtivoController {
 		return ativoService.buscarPorId(id);
 	}
 	
-	@PostMapping
-	@Transactional
-	public Ativo incluirAtivo(@RequestBody Ativo dados) {
-		
-		Empresa empresa = empresaService.buscarPorId("647d20c807a921005138e9fc");
-		TipoAtivo tipo = tipoAtivoService.buscarPorId("647d1bf91e583032376860f3");
-		
-		dados.setInstituicao(empresa);
-		dados.setTipoAtivo(tipo);
-		
-		return ativoService.criar(dados);
-	}
+//	@PostMapping
+//	@Transactional
+//	public Ativo incluirAtivo(@RequestBody @Valid Ativo dados) {
+//		
+//		Empresa empresa = empresaService.buscarPorId("647d20c807a921005138e9fc");
+//		TipoAtivo tipo = tipoAtivoService.buscarPorId("647d1bf91e583032376860f3");
+//		
+//		dados.setInstituicao(empresa);
+//		dados.setTipoAtivo(tipo);
+//		
+//		return ativoService.criar(dados);
+//	}
 }

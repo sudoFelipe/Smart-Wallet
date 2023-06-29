@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ribbtec.smartwallet.dto.DadosEmpresaDTO;
 import com.ribbtec.smartwallet.entity.Empresa;
 import com.ribbtec.smartwallet.record.InfoEmpresa;
 import com.ribbtec.smartwallet.service.EmpresaService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/empresa")
@@ -22,7 +25,7 @@ public class EmpresaController {
 	private EmpresaService empresaService;
 	
 	@GetMapping
-	public List<Empresa> consultarTodos() {
+	public List<DadosEmpresaDTO> consultarTodos() {
 		return empresaService.buscarTodos();
 	}
 	
@@ -33,7 +36,7 @@ public class EmpresaController {
 	
 	@PostMapping
 	@Transactional
-	public Empresa incluir(@RequestBody InfoEmpresa dados) {
+	public Empresa incluir(@RequestBody @Valid InfoEmpresa dados) {
 		return empresaService.criar(new Empresa(dados));
 	}
 }
