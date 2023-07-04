@@ -1,4 +1,4 @@
-package com.ribbtec.smartwallet.record;
+package com.ribbtec.smartwallet.dto;
 
 import com.ribbtec.smartwallet.entity.Empresa;
 import com.ribbtec.smartwallet.entity.TipoAtivo;
@@ -6,7 +6,7 @@ import com.ribbtec.smartwallet.entity.TipoAtivo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
-public record InfoAtivo(
+public record CadastroAtivoDTO(
 		
 		String id, 
 		

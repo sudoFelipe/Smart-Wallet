@@ -3,11 +3,18 @@ package com.ribbtec.smartwallet.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.ribbtec.smartwallet.record.InfoEmpresa;
+import com.ribbtec.smartwallet.dto.CadastroEmpresaDTO;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 @Document(collection = "empresas")
 public class Empresa {
 
@@ -16,7 +23,7 @@ public class Empresa {
 	private String descricao;
 	private String cnpj;
 
-	public Empresa(InfoEmpresa dados) {
+	public Empresa(CadastroEmpresaDTO dados) {
 		this.descricao = dados.descricao();
 		this.cnpj = dados.cnpj();
 	}

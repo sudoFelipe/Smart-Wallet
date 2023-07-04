@@ -1,8 +1,8 @@
-package com.ribbtec.smartwallet.record;
+package com.ribbtec.smartwallet.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record InfoTipoAtivo(
+public record CadastroTipoAtivoDTO(
 		
 		String id, 
 		
