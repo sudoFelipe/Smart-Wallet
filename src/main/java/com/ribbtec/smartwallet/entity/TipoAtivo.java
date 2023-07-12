@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.ribbtec.smartwallet.dto.AtualizacaoTipoAtivoDTO;
 import com.ribbtec.smartwallet.dto.CadastroTipoAtivoDTO;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,10 +22,12 @@ public class TipoAtivo {
 	private String id;
 	private String descricao;
 	private String sigla;
+	private boolean ativo;
 
 	public TipoAtivo(CadastroTipoAtivoDTO dados) {
 		this.descricao = dados.descricao();
 		this.sigla = dados.sigla();
+		this.ativo = true;
 	}
 	
 	public void atualizarDados(AtualizacaoTipoAtivoDTO dados) {
@@ -37,5 +38,10 @@ public class TipoAtivo {
 		if (dados.sigla() != null) {
 			this.sigla = dados.sigla();
 		}
+	}
+
+	public void desativar() {
+		
+		this.ativo = false;
 	}
 }

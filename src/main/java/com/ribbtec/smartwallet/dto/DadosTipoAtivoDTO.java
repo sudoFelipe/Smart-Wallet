@@ -2,10 +2,23 @@ package com.ribbtec.smartwallet.dto;
 
 import com.ribbtec.smartwallet.entity.TipoAtivo;
 
-public record DadosTipoAtivoDTO(String id, String descricao, String sigla) {
+import jakarta.validation.constraints.NotBlank;
+
+public record DadosTipoAtivoDTO(
+		
+		@NotBlank
+		String id, 
+		
+		@NotBlank
+		String descricao, 
+		
+		@NotBlank
+		String sigla, 
+		
+		boolean ativo) {
 
 	public DadosTipoAtivoDTO(TipoAtivo tipoAtivo) {
 		
-		this(tipoAtivo.getId(), tipoAtivo.getDescricao(), tipoAtivo.getSigla());
+		this(tipoAtivo.getId(), tipoAtivo.getDescricao(), tipoAtivo.getSigla(), tipoAtivo.isAtivo());
 	}
 }

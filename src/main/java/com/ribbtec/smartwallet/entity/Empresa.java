@@ -3,9 +3,10 @@ package com.ribbtec.smartwallet.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.ribbtec.smartwallet.dto.AtualizacaoEmpresaDTO;
 import com.ribbtec.smartwallet.dto.CadastroEmpresaDTO;
 
-import lombok.Data;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,9 +23,26 @@ public class Empresa {
 	private String id;
 	private String descricao;
 	private String cnpj;
+	private boolean ativo;
 
 	public Empresa(CadastroEmpresaDTO dados) {
 		this.descricao = dados.descricao();
 		this.cnpj = dados.cnpj();
+		this.ativo = true;
+	}
+
+	public void atualizarDados(@Valid AtualizacaoEmpresaDTO dados) {
+		
+		if (dados.descricao() != null) {
+			this.descricao = dados.descricao();
+		}
+		
+		if (dados.cnpj() != null) {
+			this.cnpj = dados.cnpj();
+		}
+	}
+
+	public void desativar() {
+		this.ativo = false;
 	}
 }

@@ -1,10 +1,8 @@
 package com.ribbtec.smartwallet.dto;
 
-import com.ribbtec.smartwallet.entity.Empresa;
-import com.ribbtec.smartwallet.entity.TipoAtivo;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record CadastroAtivoDTO(
 		
@@ -13,15 +11,15 @@ public record CadastroAtivoDTO(
 		@NotBlank
 		String descricao, 
 		
-		@NotBlank
+		@NotNull
 		@Valid
-		TipoAtivo tipoAtivo, 
+		CadastroTipoAtivoDTO tipoAtivo, 
 		
 		@NotBlank
 		String ticker , 
 		
-		@NotBlank
+		@NotNull
 		@Valid
-		Empresa instituicao ) {
+		CadastroEmpresaDTO instituicao ) {
 
 }
