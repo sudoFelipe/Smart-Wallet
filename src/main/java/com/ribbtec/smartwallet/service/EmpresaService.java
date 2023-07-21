@@ -34,11 +34,16 @@ public class EmpresaService {
 	}
 	
 	//	BUSCA DE EMPRESA POR ID
-	public DadosEmpresaDTO buscarPorId(String id) {
+	public Optional<DadosEmpresaDTO> buscarPorId(String id) {
 		
 		Optional<Empresa> empresa = empresaRepository.findById(id);
 		
-		return empresa.isPresent() ? new DadosEmpresaDTO(empresa.get()) : null;
+		if (empresa.isPresent()) {
+			DadosEmpresaDTO dto = new DadosEmpresaDTO(empresa.get());
+			return Optional.of(dto);
+		}
+		
+		return Optional.empty();
 	}
 	
 	//	CRIACAO DE EMPRESA

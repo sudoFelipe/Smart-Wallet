@@ -7,7 +7,11 @@ public record CadastroEmpresaDTO(
 		
 		String id, 
 		
-		@NotBlank
+		//	CONFIG. RESPOSTA DE ERROS
+//		@NotBlank(message = "mensagem de erro")
+		@NotBlank(message = "{descricao.obrigatorio}")	//	MENSAGEM EXTRAÍDA DO ARQUIVO ValidationMessages.properties
+		
+		/* (message = "Nome é obrigatório") */
 		String descricao, 
 		
 		@NotBlank
