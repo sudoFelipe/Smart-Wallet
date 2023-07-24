@@ -54,20 +54,23 @@ public class EmpresaService {
 		return new DadosEmpresaDTO(empresaRepository.save(empresa));
 	}
 
-	public DadosEmpresaDTO atualizar(@Valid AtualizacaoEmpresaDTO dados) {
+	//	ATUALIZACAO DE EMPRESA
+	public Optional<DadosEmpresaDTO> atualizar(@Valid AtualizacaoEmpresaDTO dados) {
 		
 		Optional<Empresa> retornoEmpresa = empresaRepository.findById(dados.id());
 		
 		if (retornoEmpresa.isPresent()) {
 			Empresa empresa = retornoEmpresa.get();
 			empresa.atualizarDados(dados);
-			return new DadosEmpresaDTO(empresaRepository.save(empresa));
+			DadosEmpresaDTO dto = new DadosEmpresaDTO(empresaRepository.save(empresa));
+			return Optional.of(dto);
 		}
 		
-		return null;
+		return Optional.empty();
 	}
 
-	public DadosEmpresaDTO remover(String id) {
+	//	 REMOCAO DE EMPRESA
+	public Optional<DadosEmpresaDTO> remover(String id) {
 		
 		Optional<Empresa> retornoEmpresa = empresaRepository.findById(id);
 		
@@ -75,10 +78,11 @@ public class EmpresaService {
 			Empresa empresa = retornoEmpresa.get();
 			empresa.desativar();
 			
-			return new DadosEmpresaDTO(empresaRepository.save(empresa));
+			DadosEmpresaDTO dto = new DadosEmpresaDTO(empresaRepository.save(empresa));
+			return Optional.of(dto);
 		}
 		
-		return null;
+		return Optional.empty();
 	}
 
 }

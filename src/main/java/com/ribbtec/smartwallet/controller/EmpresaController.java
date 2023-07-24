@@ -73,15 +73,23 @@ public class EmpresaController {
 		
 		var retorno = empresaService.atualizar(dados);
 		
-		return ResponseEntity.ok(retorno);
+		if (retorno.isPresent()) {
+			return ResponseEntity.ok(retorno.get());
+		}
+		
+		return TratadorDeErros.tratamentoErro404();
 	}
 	
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<DadosEmpresaDTO> excluir(@PathVariable String id) {
 		
-		empresaService.remover(id);
+		var retorno = empresaService.remover(id);
 		
-		return ResponseEntity.noContent().build();
+		if (retorno.isPresent()) {
+			return ResponseEntity.ok().build();
+		}
+		
+		return TratadorDeErros.tratamentoErro404();
 	}
 }
