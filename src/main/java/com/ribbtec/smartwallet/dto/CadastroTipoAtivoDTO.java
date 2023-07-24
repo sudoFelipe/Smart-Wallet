@@ -6,10 +6,10 @@ public record CadastroTipoAtivoDTO(
 		
 		String id, 
 		
-		@NotBlank
+		@NotBlank(message = "{descricao.obrigatorio}")
 		String descricao, 
 		
-		@NotBlank
+		@NotBlank(message = "{sigla.obrigatorio}")
 		String sigla) {
 
 }

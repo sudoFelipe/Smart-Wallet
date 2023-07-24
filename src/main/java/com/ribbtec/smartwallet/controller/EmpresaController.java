@@ -62,7 +62,7 @@ public class EmpresaController {
 		 * ENCAPSULAMENTO DA URI
 		 * CONTEXT / CAMINHO / SUBSTITUICAO DO ID
 		 */
-		var uri = uriBuilder.path("/empresa/{id}").buildAndExpand(retorno.id()).toUri();
+		var uri = uriBuilder.path("/empresa/{id}").buildAndExpand(dados.id()).toUri();
 		
 		return ResponseEntity.created(uri).body(retorno);
 	}

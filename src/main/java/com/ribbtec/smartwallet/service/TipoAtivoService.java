@@ -36,14 +36,19 @@ public class TipoAtivoService {
 		return new DadosTipoAtivoDTO(tipoAtivoRepository.save(tipoAtivo));
 	}
 
-	public DadosTipoAtivoDTO buscarPorId(String id) {
+	public Optional<DadosTipoAtivoDTO> buscarPorId(String id) {
 		
 		Optional<TipoAtivo> tipoAtivo = tipoAtivoRepository.findById(id);
 		
-		return tipoAtivo.isPresent() ? new DadosTipoAtivoDTO(tipoAtivo.get()) : null;
+		if (tipoAtivo.isPresent()) {
+			
+			return Optional.of(new DadosTipoAtivoDTO(tipoAtivo.get()));
+		}
+		
+		return Optional.empty();
 	}
 
-	public DadosTipoAtivoDTO atualizar(AtualizacaoTipoAtivoDTO dados) {
+	public Optional<DadosTipoAtivoDTO> atualizar(AtualizacaoTipoAtivoDTO dados) {
 		
 		var retorno = tipoAtivoRepository.findById(dados.id());
 		
@@ -52,10 +57,12 @@ public class TipoAtivoService {
 			TipoAtivo retornoTipoAtivo = retorno.get();
 			retornoTipoAtivo.atualizarDados(dados);
 			retornoTipoAtivo = tipoAtivoRepository.save(retornoTipoAtivo);
-			return new DadosTipoAtivoDTO(retornoTipoAtivo);
+			DadosTipoAtivoDTO dto = new DadosTipoAtivoDTO(retornoTipoAtivo);
+			
+			return Optional.of(dto);
 		}
 		
-		return null;
+		return Optional.empty();
 	}
 
 	public Optional<DadosTipoAtivoDTO> remover(String id) {
