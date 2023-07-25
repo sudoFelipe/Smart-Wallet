@@ -29,6 +29,20 @@ public class AtivoService {
 		return ativoRepository.findByAtivoTrue(paginacao).stream().map(DadosAtivoDTO::new).toList();
 	}
 	
+	public Optional<DadosAtivoDTO> buscarPorId(String id) {
+		
+		Optional<Ativo> ativo = ativoRepository.findById(id);
+		
+		if (ativo.isPresent()) {
+			
+			var retorno = new DadosAtivoDTO(ativo.get());
+			
+			Optional.of(retorno);
+		}
+		
+		return Optional.empty();
+	}
+	
 	public DadosAtivoDTO criar(CadastroAtivoDTO dados) {
 		
 		Ativo ativo = new Ativo(dados);
@@ -36,14 +50,7 @@ public class AtivoService {
 		return new DadosAtivoDTO(ativoRepository.save(ativo));
 	}
 
-	public DadosAtivoDTO buscarPorId(String id) {
-		
-		Optional<Ativo> ativo = ativoRepository.findById(id);
-		
-		return ativo.isPresent() ? new DadosAtivoDTO(ativo.get()) : null;
-	}
-
-	public DadosAtivoDTO atualizar(@Valid AtualizacaoAtivoDTO dados) {
+	public Optional<DadosAtivoDTO> atualizar(@Valid AtualizacaoAtivoDTO dados) {
 		
 		Optional<Ativo> retornoAtivo = ativoRepository.findById(dados.id());
 		
@@ -52,22 +59,26 @@ public class AtivoService {
 			ativo.atulizarDados(dados);
 			ativo = ativoRepository.save(ativo);
 			
-			return new DadosAtivoDTO(ativo);
+			DadosAtivoDTO dto = new DadosAtivoDTO(ativo);
+			
+			return Optional.of(dto);
 		}
 		
-		return null;
+		return Optional.empty();
 	}
 
-	public DadosAtivoDTO remover(String id) {
+	public Optional<DadosAtivoDTO> remover(String id) {
 		
 		Optional<Ativo> retornoAtivo = ativoRepository.findById(id);
 		
 		if (retornoAtivo.isPresent()) {
 			Ativo ativo = retornoAtivo.get();
 			ativo.desativar();
-			return new DadosAtivoDTO(ativoRepository.save(ativo));
+			DadosAtivoDTO dto = new DadosAtivoDTO(ativoRepository.save(ativo));
+			
+			return Optional.of(dto);
 		}
 		
-		return null;
+		return Optional.empty();
 	}
 }
