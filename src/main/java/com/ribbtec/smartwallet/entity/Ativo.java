@@ -39,9 +39,11 @@ public class Ativo {
 	private void incluirComplementoEntidades(CadastroAtivoDTO dados) {
 		this.instituicao = new Empresa(dados.instituicao());
 		this.instituicao.setId(dados.instituicao().id());
+		this.instituicao.setAtivo(null);
 		
 		this.tipoAtivo = new TipoAtivo(dados.tipoAtivo());
 		this.tipoAtivo.setId(dados.tipoAtivo().id());
+		this.tipoAtivo.setAtivo(null);
 	}
 
 	public void atulizarDados(@Valid AtualizacaoAtivoDTO dados) {

@@ -1,4 +1,4 @@
-package com.ribbtec.smartwallet.infra;
+package com.ribbtec.smartwallet.infra.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.ribbtec.smartwallet.dto.DadosAtivoDTO;
+import com.ribbtec.smartwallet.dto.DadosEmpresaDTO;
 
 @RestControllerAdvice
-public class TratadorDeErrosAtivo {
+public class TratadorDeErros {
 
 	//	RECURSO NÃO ENCONTRADO
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	public static ResponseEntity<DadosAtivoDTO> tratamentoErro404() {
+	public static ResponseEntity<DadosEmpresaDTO> tratamentoErro404() {
 		return ResponseEntity.notFound().build();
 	}
 	

@@ -11,14 +11,14 @@ public record CadastroAtivoDTO(
 		@NotBlank
 		String descricao, 
 		
-		@NotNull
+//		@NotNull
 		@Valid
 		CadastroTipoAtivoDTO tipoAtivo, 
 		
 		@NotBlank
 		String ticker , 
 		
-		@NotNull
+//		@NotNull
 		@Valid
 		CadastroEmpresaDTO instituicao ) {
 

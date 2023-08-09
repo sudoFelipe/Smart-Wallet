@@ -19,6 +19,6 @@ public record DadosTipoAtivoDTO(
 
 	public DadosTipoAtivoDTO(TipoAtivo tipoAtivo) {
 		
-		this(tipoAtivo.getId(), tipoAtivo.getDescricao(), tipoAtivo.getSigla(), tipoAtivo.isAtivo());
+		this(tipoAtivo.getId(), tipoAtivo.getDescricao(), tipoAtivo.getSigla(), tipoAtivo.getAtivo());
 	}
 }

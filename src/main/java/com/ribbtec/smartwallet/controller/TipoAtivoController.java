@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.ribbtec.smartwallet.dto.AtualizacaoTipoAtivoDTO;
 import com.ribbtec.smartwallet.dto.CadastroTipoAtivoDTO;
 import com.ribbtec.smartwallet.dto.DadosTipoAtivoDTO;
-import com.ribbtec.smartwallet.infra.TratadorDeErrosTipoAtivo;
+import com.ribbtec.smartwallet.infra.exception.TratadorDeErrosTipoAtivo;
 import com.ribbtec.smartwallet.service.TipoAtivoService;
 
 import jakarta.validation.Valid;

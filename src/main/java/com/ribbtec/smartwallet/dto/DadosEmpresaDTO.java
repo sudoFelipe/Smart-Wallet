@@ -18,6 +18,6 @@ public record DadosEmpresaDTO(
 		boolean ativo) {
 
 	public DadosEmpresaDTO(Empresa empresa) {
-		this(empresa.getId(), empresa.getDescricao(), empresa.getCnpj(), empresa.isAtivo());
+		this(empresa.getId(), empresa.getDescricao(), empresa.getCnpj(), empresa.getAtivo());
 	}
 }

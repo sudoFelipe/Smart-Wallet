@@ -20,7 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.ribbtec.smartwallet.dto.AtualizacaoEmpresaDTO;
 import com.ribbtec.smartwallet.dto.CadastroEmpresaDTO;
 import com.ribbtec.smartwallet.dto.DadosEmpresaDTO;
-import com.ribbtec.smartwallet.infra.TratadorDeErros;
+import com.ribbtec.smartwallet.infra.exception.TratadorDeErros;
 import com.ribbtec.smartwallet.service.EmpresaService;
 
 import jakarta.validation.Valid;

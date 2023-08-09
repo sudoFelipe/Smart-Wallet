@@ -22,7 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.ribbtec.smartwallet.dto.AtualizacaoAtivoDTO;
 import com.ribbtec.smartwallet.dto.CadastroAtivoDTO;
 import com.ribbtec.smartwallet.dto.DadosAtivoDTO;
-import com.ribbtec.smartwallet.infra.TratadorDeErrosAtivo;
+import com.ribbtec.smartwallet.infra.exception.TratadorDeErrosAtivo;
 import com.ribbtec.smartwallet.service.AtivoService;
 
 import jakarta.validation.Valid;
@@ -56,7 +56,7 @@ public class AtivoController {
 		
 		var retorno = ativoService.criar(dados);
 		
-		URI uri = uriBuilder.path("/ativo/{id}").buildAndExpand(dados.id()).toUri();
+		URI uri = uriBuilder.path("/ativo/{id}").buildAndExpand(retorno.id()).toUri();
 		
 		return ResponseEntity.created(uri).body(retorno);
 	}
