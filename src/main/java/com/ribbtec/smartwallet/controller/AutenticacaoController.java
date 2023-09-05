@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ribbtec.smartwallet.dto.DadosAutenticacao;
+import com.ribbtec.smartwallet.dto.DadosTokenJWT;
 import com.ribbtec.smartwallet.entity.Usuario;
 import com.ribbtec.smartwallet.infra.security.TokenService;
 
@@ -29,10 +30,12 @@ public class AutenticacaoController {
 	@PostMapping
 	public ResponseEntity acessarLogin(@RequestBody @Valid DadosAutenticacao dados) {
 		
-		var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-		var authentication = manager.authenticate(token);
+		var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+		var authentication = manager.authenticate(authenticationToken);
+		
+		var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
 		
 		//	RETORNANDO O TOKEN JWT
-		return ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
+		return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
 	}
 }

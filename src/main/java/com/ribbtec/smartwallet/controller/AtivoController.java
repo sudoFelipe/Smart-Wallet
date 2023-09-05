@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +72,7 @@ public class AtivoController {
 	}
 	
 	@DeleteMapping("/{id}")
+	//	@Secured("ROLE_ADMIN") - DESABILITADO POR PADRÃO, PARA ATIVAR É NECESSÁRIO ANOTAR COM @EnableMethodSecurity(securedEnabled = true) em SecurityConfigurations
 	@Transactional
 	public ResponseEntity<DadosAtivoDTO> excluir(@PathVariable String id) {
 		var retorno = ativoService.remover(id);
